@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <!-- Import wizard: Under Invoicing > Vendors -->
+    <menuitem id="menu_l10n_vn_bank_statement_import_vendor"
+              name="Import Bank Statement (VN)"
+              parent="account.menu_finance_payables"
+              action="action_l10n_vn_bank_statement_import"
+              sequence="55"/>
+
+    <!-- Import wizard: Under Invoicing > Customers -->
+    <menuitem id="menu_l10n_vn_bank_statement_import_customer"
+              name="Import Bank Statement (VN)"
+              parent="account.menu_finance_receivables"
+              action="action_l10n_vn_bank_statement_import"
+              sequence="55"/>
+</odoo>

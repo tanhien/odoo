@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <!-- Under Accounting > Vendors -->
+    <menuitem id="menu_l10n_vn_einvoice_import_vendor"
+              name="Import E-Invoice (VN)"
+              parent="account.menu_finance_payables"
+              action="action_l10n_vn_einvoice_import"
+              sequence="50"/>
+
+    <!-- Under Accounting > Customers -->
+    <menuitem id="menu_l10n_vn_einvoice_import_customer"
+              name="Import E-Invoice (VN)"
+              parent="account.menu_finance_receivables"
+              action="action_l10n_vn_einvoice_import"
+              sequence="50"/>
+</odoo>

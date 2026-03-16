@@ -1,0 +1,34 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <record id="res_config_settings_view_form_inherit_bank_import" model="ir.ui.view">
+        <field name="name">res.config.settings.form.inherit.l10n_vn_bank_statement_import</field>
+        <field name="model">res.config.settings</field>
+        <field name="inherit_id" ref="account.res_config_settings_view_form"/>
+        <field name="arch" type="xml">
+            <xpath expr="//app[@name='account']" position="inside">
+                <block title="Bank Statement Import (VN)" id="vn_bank_import_settings">
+                    <setting id="bank_import_fee_setting"
+                             string="Bank Fee Configuration"
+                             help="Configure default account for automatic bank fee posting">
+                        <div class="content-group">
+                            <div class="mt16 row">
+                                <label for="l10n_vn_bank_import_fee_account_code"
+                                       string="Fee Account Code"
+                                       class="col-3 col-lg-3 o_light_label"/>
+                                <field name="l10n_vn_bank_import_fee_account_code"
+                                       nolabel="1" placeholder="6427"/>
+                            </div>
+                            <div class="row">
+                                <label for="l10n_vn_bank_import_match_tolerance"
+                                       string="Match Tolerance (VND)"
+                                       class="col-3 col-lg-3 o_light_label"/>
+                                <field name="l10n_vn_bank_import_match_tolerance"
+                                       nolabel="1"/>
+                            </div>
+                        </div>
+                    </setting>
+                </block>
+            </xpath>
+        </field>
+    </record>
+</odoo>

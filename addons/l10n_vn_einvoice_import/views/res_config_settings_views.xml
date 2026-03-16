@@ -1,0 +1,36 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <record id="res_config_settings_view_form_inherit_l10n_vn_einvoice" model="ir.ui.view">
+        <field name="name">res.config.settings.form.inherit.l10n_vn_einvoice_import</field>
+        <field name="model">res.config.settings</field>
+        <field name="inherit_id" ref="account.res_config_settings_view_form"/>
+        <field name="arch" type="xml">
+            <xpath expr="//app[@name='account']" position="inside">
+                <block title="E-Invoice Import (VN)" id="vn_einvoice_import_settings">
+                    <setting id="einvoice_llm_setting" string="LLM OCR Configuration"
+                             help="Configure the LLM server used for PDF invoice OCR">
+                        <div class="content-group">
+                            <div class="mt16 row">
+                                <label for="l10n_vn_einvoice_llm_url" string="API URL"
+                                       class="col-3 col-lg-3 o_light_label"/>
+                                <field name="l10n_vn_einvoice_llm_url" nolabel="1"
+                                       placeholder="http://192.168.1.185:1234/v1/chat/completions"/>
+                            </div>
+                            <div class="row">
+                                <label for="l10n_vn_einvoice_llm_model" string="Model"
+                                       class="col-3 col-lg-3 o_light_label"/>
+                                <field name="l10n_vn_einvoice_llm_model" nolabel="1"
+                                       placeholder="qwen/qwen3-vl-8b"/>
+                            </div>
+                            <div class="row">
+                                <label for="l10n_vn_einvoice_llm_timeout" string="Timeout (s)"
+                                       class="col-3 col-lg-3 o_light_label"/>
+                                <field name="l10n_vn_einvoice_llm_timeout" nolabel="1"/>
+                            </div>
+                        </div>
+                    </setting>
+                </block>
+            </xpath>
+        </field>
+    </record>
+</odoo>

@@ -1,0 +1,59 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <record id="l10n_vn_bank_statement_import_wizard_form" model="ir.ui.view">
+        <field name="name">l10n_vn_bank_statement_import.wizard.form</field>
+        <field name="model">l10n_vn_bank_statement_import.wizard</field>
+        <field name="arch" type="xml">
+            <form string="Import Bank Statement (VN)">
+                <field name="state" invisible="1"/>
+
+                <!-- Step 1: Upload -->
+                <group invisible="state != 'upload'">
+                    <group>
+                        <field name="journal_id"/>
+                        <field name="file_data" filename="file_name"/>
+                        <field name="file_name" invisible="1"/>
+                        <field name="match_tolerance_amount"/>
+                    </group>
+                </group>
+
+                <!-- Step 2: Preview -->
+                <group invisible="state != 'preview'" string="Import Status">
+                    <field name="import_status" nolabel="1" readonly="1"
+                           widget="text" colspan="2"/>
+                </group>
+                <group invisible="state != 'preview'">
+                    <field name="preview_line_ids" nolabel="1" colspan="2">
+                        <list editable="bottom">
+                            <field name="date" readonly="1"/>
+                            <field name="amount" readonly="1"/>
+                            <field name="payment_ref" readonly="1"/>
+                            <field name="line_type"/>
+                            <field name="available_bill_ids" column_invisible="True"/>
+                            <field name="suggested_bill_id"
+                                   options="{'no_create': True}"/>
+                            <field name="match_score" readonly="1"/>
+                        </list>
+                    </field>
+                </group>
+
+                <footer>
+                    <button string="Parse &amp; Match" name="action_parse"
+                            type="object" class="btn-primary"
+                            invisible="state != 'upload'"/>
+                    <button string="Create Payments" name="action_confirm"
+                            type="object" class="btn-primary"
+                            invisible="state != 'preview'"/>
+                    <button string="Cancel" special="cancel"/>
+                </footer>
+            </form>
+        </field>
+    </record>
+
+    <record id="action_l10n_vn_bank_statement_import" model="ir.actions.act_window">
+        <field name="name">Import Bank Statement (VN)</field>
+        <field name="res_model">l10n_vn_bank_statement_import.wizard</field>
+        <field name="view_mode">form</field>
+        <field name="target">new</field>
+    </record>
+</odoo>

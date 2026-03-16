@@ -41,6 +41,9 @@ tsconfig.json
 package-lock.json
 package.json
 .husky
+odoo.log
+nul
+notes.txt
 
 # various virtualenv
 /bin/
@@ -51,3 +54,4 @@ package.json
 /man/
 /share/
 /src/
+/dev/
