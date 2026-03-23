@@ -1,0 +1,40 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <record id="res_config_settings_view_form" model="ir.ui.view">
+        <field name="name">res.config.settings.view.form.inherit.account_ai_ocr</field>
+        <field name="model">res.config.settings</field>
+        <field name="inherit_id" ref="account.res_config_settings_view_form"/>
+        <field name="arch" type="xml">
+            <xpath expr="//block[@id='account_digitalization']" position="after">
+                <block title="AI Invoice Recognition (Local LLM)" id="ai_ocr_settings">
+                    <setting id="ai_ocr_enable"
+                             string="AI OCR Invoice Recognition"
+                             help="Use a local LLM with vision capabilities to automatically extract data from uploaded invoice PDFs and images">
+                        <field name="account_ai_ocr_enabled"/>
+                        <div class="content-group" invisible="not account_ai_ocr_enabled">
+                            <div class="row mt16">
+                                <label string="LLM Server URL" for="account_ai_ocr_ollama_url" class="col-lg-3 o_light_label"/>
+                                <field name="account_ai_ocr_ollama_url" class="col-lg-4" placeholder="http://192.168.98.72:1234"/>
+                            </div>
+                            <div class="row mt8">
+                                <label string="Vision Model" for="account_ai_ocr_ollama_model" class="col-lg-3 o_light_label"/>
+                                <field name="account_ai_ocr_ollama_model" class="col-lg-4" placeholder="qwen/qwen3-vl-8b"/>
+                            </div>
+                            <div class="row mt8">
+                                <label string="Timeout (seconds)" for="account_ai_ocr_timeout" class="col-lg-3 o_light_label"/>
+                                <field name="account_ai_ocr_timeout" class="col-lg-2"/>
+                            </div>
+                            <div class="mt8">
+                                <button name="action_test_ollama_connection"
+                                        type="object"
+                                        string="Test Connection"
+                                        class="btn-secondary"
+                                        icon="fa-plug"/>
+                            </div>
+                        </div>
+                    </setting>
+                </block>
+            </xpath>
+        </field>
+    </record>
+</odoo>
