@@ -346,7 +346,15 @@ class MailMail(models.Model):
             self.env['ir.config_parameter'].sudo().get_param('mail.disable_personal_mail_servers', False)
         ):
             return mail_servers.filtered(lambda server: not server.owner_user_id)
-        return mail_servers.filtered(lambda server: server.owner_user_id in [self.env['res.users'], self.mail_message_id.create_uid])
+        create_uid = self.mail_message_id.create_uid
+        # In mass mailing, mail.message is created with sudo (create_uid = superuser),
+        # so also allow the server if its owner matches the actual email author.
+        author_users = self.sudo().author_id.user_ids
+        return mail_servers.filtered(
+            lambda server: not server.owner_user_id
+                or server.owner_user_id == create_uid
+                or server.owner_user_id in author_users
+        )
 
     def _prepare_outgoing_body(self):
         """Return a specific ir_email body. The main purpose of this method
